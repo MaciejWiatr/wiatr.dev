@@ -1,0 +1,44 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+  className?: string;
+}
+
+const { id, title, as = "h1", className } = Astro.props as Props;
+
+const words = title.split("");
+const Element = as;
+---
+
+<Element
+  data-id={id}
+  class:list={["text-3xl text-zinc-200 font-semibold", className]}
+>
+  {
+    words.map((char: string) => (
+      <span class={`title-word-${id} inline-block opacity-0`}>
+        {char === " " ? "\u00A0" : char}
+      </span>
+    ))
+  }
+</Element>
+
+<script>
+  import { animate, stagger, createSpring } from "animejs";
+
+  const titleElements = document.querySelectorAll("[data-id]");
+
+  titleElements.forEach((element) => {
+    const id = (element as HTMLElement).dataset.id;
+    if (id) {
+      animate(`.title-word-${id}`, {
+        opacity: [0, 1],
+        translateY: [20, 0],
+        delay: stagger(75),
+        ease: createSpring({ stiffness: 140, damping: 10 }),
+      });
+    }
+  });
+</script>

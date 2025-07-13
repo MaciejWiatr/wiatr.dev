@@ -1,0 +1,55 @@
+---
+const { href } = Astro.props;
+---
+
+<div
+  class="social-link w-full p-0.5 rounded-2xl bg-zinc-800 relative overflow-hidden group"
+>
+  <div
+    class="social-link-gradient w-[150%] h-[150%] absolute top-[-25%] left-[-25%] opacity-0 pointer-events-none"
+  >
+  </div>
+  <a
+    href={href}
+    class="text-zinc-400 text-sm bg-zinc-800 rounded-xl p-3 w-full flex items-center justify-center h-full relative z-10"
+  >
+    <slot />
+  </a>
+  <div
+    class="bg-radial from-zinc-100 to-zinc-800 w-full h-full absolute -top-20 left-0 z-20 blur-sm group-hover:-top-12 transition-all duration-300"
+  >
+  </div>
+</div>
+
+<style>
+  .social-link-gradient {
+    transform-origin: center;
+    background: conic-gradient(
+      from 0deg,
+      #7c3aed 0%,
+      #8b5cf6 12.5%,
+      #6d28d9 25%,
+      #4c1d95 37.5%,
+      #3730a3 50%,
+      #2e1065 62.5%,
+      #1e1b4b 75%,
+      #4c1d95 87.5%,
+      #7c3aed 100%
+    );
+    transition: opacity 0.25s ease-in-out;
+    animation: spin 3s linear infinite;
+  }
+
+  .social-link:hover .social-link-gradient {
+    opacity: 0.6;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+</style>
