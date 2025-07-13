@@ -36,7 +36,7 @@ const Element = as;
       animate(`.title-word-${id}`, {
         opacity: [0, 1],
         translateY: [20, 0],
-        delay: stagger(75),
+        delay: stagger(75, { start: 300 }),
         ease: createSpring({ stiffness: 140, damping: 10 }),
       });
     }

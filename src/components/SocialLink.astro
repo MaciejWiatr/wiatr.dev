@@ -53,3 +53,14 @@ const { href } = Astro.props;
     }
   }
 </style>
+
+<script>
+  import { animate, stagger, createSpring } from "animejs";
+
+  animate(".social-link", {
+    y: [20, 0],
+    opacity: [0, 1],
+    delay: stagger(150, { start: 600 }),
+    ease: createSpring({ damping: 10, stiffness: 140 }),
+  });
+</script>

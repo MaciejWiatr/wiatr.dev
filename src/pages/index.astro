@@ -1,9 +1,10 @@
 ---
-import { Icon } from "astro-icon/components";
-
-import SocialLink from "../components/SocialLink.astro";
 import "../styles/global.css";
+
+import { Icon } from "astro-icon/components";
+import SocialLink from "../components/SocialLink.astro";
 import AnimatedTitle from "../components/AnimatedTitle.astro";
+import HeartyPhoto from "../components/HeartyPhoto.astro";
 ---
 
 <html lang="en">
@@ -25,12 +26,13 @@ import AnimatedTitle from "../components/AnimatedTitle.astro";
       class="flex items-center justify-center md:flex-row w-screen h-screen bg-zinc-900"
     >
       <div class="flex flex-col md:flex-row bg-zinc-900 gap-4 md:gap-8 md:h-44">
-        <img
-          id="main-image"
-          src="/profile_pic.png"
-          alt="Maciej Wiatr"
-          class="rounded-2xl aspect-square h-44 w-44 md:h-full md:w-44 grayscale hover:grayscale-0 transition-all duration-300"
-        />
+        <div class="rounded-2xl overflow-hidden">
+          <HeartyPhoto
+            src="/profile_pic.png"
+            alt="Maciej Wiatr"
+            class="rounded-2xl aspect-square h-44 w-44 md:h-full md:w-44 grayscale hover:grayscale-0 transition-all duration-300"
+          />
+        </div>
         <div
           class="h-full grid grid-rows-[1fr_auto] grid-cols-1 gap-4 md:gap-8"
         >
@@ -46,111 +48,17 @@ import AnimatedTitle from "../components/AnimatedTitle.astro";
 
           <div class="flex gap-2 w-full">
             <SocialLink href="https://github.com/MaciejWiatr/">
-              <Icon name="github" class="w-5 h-5" />
+              <Icon name="github" class="w-5 h-5" aria-label="GitHub" />
             </SocialLink>
             <SocialLink href="https://www.linkedin.com/in/maciej-wiatr/">
-              <Icon name="linkedin" class="w-5 h-5" />
+              <Icon name="linkedin" class="w-5 h-5" aria-label="LinkedIn" />
             </SocialLink>
             <SocialLink href="https://cal.com/maciej-wiatr-7nwfzw/30min">
-              <Icon name="calendar" class="w-5 h-5" />
+              <Icon name="calendar" class="w-5 h-5" aria-label="Calendar" />
             </SocialLink>
           </div>
         </div>
       </div>
     </main>
-
-    <script>
-      import { animate } from "animejs";
-
-      const image = document.querySelector("#main-image") as HTMLImageElement;
-
-      function throttle(mainFunction: any, delay: number) {
-        let timerFlag: any = null;
-
-        return (...args: any[]) => {
-          if (timerFlag === null) {
-            mainFunction(...args);
-            timerFlag = setTimeout(() => {
-              timerFlag = null; // Clear the timerFlag to allow the main function to be executed again
-            }, delay);
-          }
-        };
-      }
-
-      image.addEventListener(
-        "mousemove",
-        throttle((event: MouseEvent) => {
-          // get mouse position
-          const mouseX = event.clientX;
-          const mouseY = event.clientY;
-
-          const id = crypto.randomUUID();
-
-          // Create the heart element
-          const heart = document.createElement("img");
-          heart.id = id;
-          heart.className = "heart";
-          heart.src = "/heart.png";
-          heart.alt = "Heart";
-
-          heart.style.top = mouseY + "px";
-          heart.style.left = mouseX + "px";
-          heart.style.width = "32px";
-          heart.style.height = "32px";
-          heart.style.position = "absolute";
-          heart.style.display = "block";
-          heart.style.zIndex = "1000";
-          heart.style.imageRendering = "pixelated";
-          heart.style.pointerEvents = "none";
-
-          document.body.appendChild(heart);
-
-          const randomVariable = Math.random() * 10;
-
-          const variants = [
-            [
-              { y: -30, x: 5 + randomVariable, opacity: 1, rotate: 2 },
-              { y: -70, x: 8 + randomVariable, opacity: 0.9, rotate: 4 },
-              { y: -120, x: 12 + randomVariable, opacity: 0.6, rotate: 6 },
-              { y: -180, x: 15 + randomVariable, opacity: 0.2, rotate: 8 },
-              { y: -220, x: 18 + randomVariable, opacity: 0, rotate: 10 },
-            ],
-            [
-              { y: -30, x: -5 + randomVariable, opacity: 1, rotate: -2 },
-              { y: -70, x: -8 + randomVariable, opacity: 0.9, rotate: -4 },
-              { y: -120, x: -12 + randomVariable, opacity: 0.6, rotate: -6 },
-              { y: -180, x: -15 + randomVariable, opacity: 0.2, rotate: -8 },
-              { y: -220, x: -18 + randomVariable, opacity: 0, rotate: -10 },
-            ],
-            [
-              { y: -25, x: 3 + randomVariable, opacity: 1, rotate: 1 },
-              { y: -60, x: 8 + randomVariable, opacity: 0.95, rotate: 3 },
-              { y: -100, x: 15 + randomVariable, opacity: 0.8, rotate: 5 },
-              { y: -150, x: 20 + randomVariable, opacity: 0.4, rotate: 7 },
-              { y: -200, x: 22 + randomVariable, opacity: 0, rotate: 9 },
-            ],
-            [
-              { y: -35, x: 0 + randomVariable, opacity: 1, rotate: 0 },
-              { y: -75, x: 2 + randomVariable, opacity: 0.9, rotate: 2 },
-              { y: -125, x: 5 + randomVariable, opacity: 0.7, rotate: 4 },
-              { y: -175, x: 8 + randomVariable, opacity: 0.3, rotate: 6 },
-              { y: -210, x: 10 + randomVariable, opacity: 0, rotate: 8 },
-            ],
-          ];
-
-          const keyframes =
-            variants[Math.floor(Math.random() * variants.length)];
-
-          animate(heart, {
-            keyframes,
-            ease: "linear",
-            duration: 1200,
-            onComplete: () => {
-              heart.remove();
-            },
-          });
-        }, 60)
-      );
-    </script>
   </body>
 </html>
