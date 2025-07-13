@@ -29,10 +29,10 @@ import AnimatedTitle from "../components/AnimatedTitle.astro";
           id="main-image"
           src="/profile_pic.png"
           alt="Maciej Wiatr"
-          class="col-span-2 rounded-2xl aspect-square h-44 md:h-full grayscale hover:grayscale-0 transition-all duration-300"
+          class="rounded-2xl aspect-square h-44 w-44 md:h-full md:w-44 grayscale hover:grayscale-0 transition-all duration-300"
         />
         <div
-          class="col-span-2 h-full grid grid-rows-[1fr_auto] grid-cols-1 gap-4 md:gap-8"
+          class="h-full grid grid-rows-[1fr_auto] grid-cols-1 gap-4 md:gap-8"
         >
           <div>
             <AnimatedTitle title="Maciej Wiatr" as="h1" id="name" />
@@ -149,7 +149,7 @@ import AnimatedTitle from "../components/AnimatedTitle.astro";
               heart.remove();
             },
           });
-        }, 80)
+        }, 60)
       );
     </script>
   </body>
