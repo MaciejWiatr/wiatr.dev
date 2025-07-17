@@ -18,7 +18,7 @@ const Element = as;
 >
   {
     words.map((char: string) => (
-      <span class={`title-word-${id} inline-block opacity-0`}>
+      <span class={`title-word-${id} inline-block opacity-0`} style="filter: blur(8px);">
         {char === " " ? "\u00A0" : char}
       </span>
     ))
@@ -36,6 +36,7 @@ const Element = as;
       animate(`.title-word-${id}`, {
         opacity: [0, 1],
         translateY: [20, 0],
+        filter: ["blur(8px)", "blur(0px)"],
         delay: stagger(75, { start: 300 }),
         ease: createSpring({ stiffness: 140, damping: 10 }),
       });
