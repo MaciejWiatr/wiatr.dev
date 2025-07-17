@@ -19,7 +19,7 @@ import HeartyPhoto from "../components/HeartyPhoto.astro";
     <link rel="icon" type="image/png" href="/heart_hands.png" />
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
-    <title>Maciej Wiatr - Software Engineer | wiatr.dev</title>
+    <title>Maciej Wiatr - Product-focused software engineer | wiatr.dev</title>
   </head>
   <body>
     <main
@@ -39,11 +39,18 @@ import HeartyPhoto from "../components/HeartyPhoto.astro";
           <div class="text-center md:text-left">
             <AnimatedTitle title="Maciej Wiatr" as="h1" id="name" />
             <AnimatedTitle
-              title="Software Engineer."
+              title="Product-focused software engineer"
               as="h2"
               className="text-lg text-zinc-400 font-medium"
               id="title"
             />
+            <a 
+              href="https://blog.wiatr.dev" 
+              class="inline-flex items-center gap-1 text-violet-400 hover:text-violet-300 transition-colors text-sm font-medium mt-2 group"
+            >
+              Read my blog
+              <span class="transform group-hover:translate-x-1 transition-transform">⟶</span>
+            </a>
           </div>
 
           <div class="flex gap-2 w-full">
